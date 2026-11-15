@@ -1,0 +1,1072 @@
+<!DOCTYPE html>
+<html lang="id" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mufrodat Harian - Belajar Bahasa Arab Interaktif</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Plus Jakarta Sans, Playfair Display & Amiri -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome untuk Ikon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                        serif: ['"Playfair Display"', 'serif'],
+                        arabic: ['Amiri', 'serif'],
+                    },
+                    colors: {
+                        ivory: '#FAF8F5',
+                        sand: '#F3EFEA',
+                        emerald: {
+                            50: '#ECFDF5',
+                            100: '#D1FAE5',
+                            600: '#059669',
+                            700: '#047857',
+                            800: '#065F46',
+                            900: '#064E3B',
+                            950: '#022C22',
+                        },
+                        gold: {
+                            50: '#FBF8F1',
+                            100: '#F5EEDB',
+                            200: '#EBD9B0',
+                            400: '#D4AF37',
+                            500: '#B8860B',
+                            600: '#9A6F08',
+                            800: '#5C4204',
+                        }
+                    },
+                    boxShadow: {
+                        'elegant': '0 10px 40px -10px rgba(6, 78, 59, 0.06)',
+                        'card': '0 2px 12px -2px rgba(15, 23, 42, 0.04)',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Kustomisasi keterbacaan teks Arab */
+        .arabic-text {
+            font-family: 'Amiri', serif;
+            line-height: 2.2;
+            direction: rtl;
+        }
+        /* Pola geometris Islami yang sangat halus */
+        .islamic-pattern {
+            background-color: #022C22;
+            background-image: radial-gradient(rgba(212, 175, 55, 0.14) 1px, transparent 1px), radial-gradient(rgba(212, 175, 55, 0.08) 1px, #022C22 1px);
+            background-size: 28px 28px;
+            background-position: 0 0, 14px 14px;
+        }
+        /* Animasi halus */
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        .animate-spin-fast {
+            animation: spin 0.8s linear infinite;
+        }
+        /* Custom scrollbar elegan */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #FAF8F5;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #D6D3CD;
+            border-radius: 9999px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #A8A29E;
+        }
+    </style>
+</head>
+<body class="bg-ivory text-stone-800 antialiased min-h-screen flex flex-col selection:bg-emerald-800 selection:text-white">
+
+    <!-- Notifikasi Toast -->
+    <div id="toast-container" class="fixed top-5 right-5 z-50 flex flex-col gap-2.5 max-w-sm w-full pointer-events-none"></div>
+
+    <!-- Top Navigation Bar Clean & Ramping -->
+    <header class="bg-white/85 backdrop-blur-md border-b border-stone-200/80 sticky top-0 z-40">
+        <!-- Garis aksen emas tipis di paling atas -->
+        <div class="h-1 w-full bg-gradient-to-r from-emerald-900 via-gold-400 to-emerald-900"></div>
+        <div class="max-w-6xl mx-auto px-5 py-3 flex items-center justify-between">
+            <div class="flex items-center gap-2.5">
+                <div class="w-8 h-8 rounded-xl bg-emerald-950 text-gold-400 flex items-center justify-center shadow-xs">
+                    <i class="fa-solid fa-feather-pointed text-sm"></i>
+                </div>
+                <span class="text-xs font-semibold tracking-widest uppercase text-stone-500">Ruang Belajar Arab</span>
+            </div>
+            
+            <div class="flex items-center gap-2 text-xs bg-ivory px-3 py-1 rounded-full border border-stone-200/80 text-stone-600">
+                <span class="w-1.5 h-1.5 rounded-full bg-emerald-600 animate-pulse"></span>
+                <span class="font-medium">Asisten Bahasa Arab AI</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex-grow max-w-6xl w-full mx-auto px-4 sm:px-6 pt-8 pb-12 space-y-8">
+
+        <!-- Hero Title Editorial: Posisi Terpusat & Tipografi Elegan -->
+        <div class="text-center max-w-2xl mx-auto space-y-2.5 pt-1 pb-2">
+            <div class="inline-flex items-center justify-center gap-3">
+                <span class="h-px w-8 bg-gold-400/60"></span>
+                <span class="arabic-text text-2xl sm:text-3xl text-gold-600 font-bold leading-none">مُفْرَدَاتٌ يَوْمِيَّةٌ</span>
+                <span class="h-px w-8 bg-gold-400/60"></span>
+            </div>
+            <h1 class="font-serif text-3xl sm:text-5xl font-bold text-emerald-950 tracking-tight">
+                Mufrodat <span class="italic font-semibold text-gold-600">Harian</span>
+            </h1>
+            <p class="text-xs sm:text-sm text-stone-500 leading-relaxed">
+                Eksplorasi kosa kata pilihan, struktur kalimat dasar, dan kaidah Nahwu-Sharaf dalam tampilan yang bersih.
+            </p>
+        </div>
+
+        <!-- BAGIAN 1: KOSA KATA HARIAN (5 ISIM & 5 FI'IL) -->
+        <section class="bg-white rounded-3xl shadow-elegant border border-stone-200/70 overflow-hidden">
+            <!-- Header Bagian 1 -->
+            <div class="bg-gradient-to-r from-sand/70 via-white to-sand/70 border-b border-stone-200/70 px-6 py-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                <div class="flex items-start gap-3.5">
+                    <span class="w-8 h-8 rounded-full bg-emerald-950 text-gold-400 text-xs font-bold flex items-center justify-center flex-shrink-0 mt-0.5 shadow-sm border border-gold-400/30">01</span>
+                    <div>
+                        <h2 class="text-lg sm:text-xl font-bold text-stone-900 tracking-tight">Kosa Kata Harian (Mufrodat)</h2>
+                        <p class="text-xs sm:text-sm text-stone-500 mt-0.5">Perbarui 5 kosa kata <strong>Isim</strong> dan 5 kosa kata <strong>Fi'il</strong> pilihan dalam satu sentuhan.</p>
+                    </div>
+                </div>
+                
+                <button id="btn-update-vocab" onclick="updateAllVocabulary()" class="w-full sm:w-auto bg-gradient-to-r from-emerald-900 to-emerald-800 hover:from-emerald-800 hover:to-emerald-700 active:scale-[0.98] text-white font-semibold text-sm px-6 py-3 rounded-2xl shadow-md shadow-emerald-950/15 border border-emerald-700/50 transition-all flex items-center justify-center gap-2.5 cursor-pointer">
+                    <i id="icon-update-vocab" class="fa-solid fa-arrows-rotate text-gold-400"></i>
+                    <span>Update Kosa Kata Baru</span>
+                </button>
+            </div>
+
+            <!-- Grid 2 Kolom Terpisah: Kiri = Isim, Kanan = Fi'il -->
+            <div class="p-6 grid grid-cols-1 lg:grid-cols-2 gap-7">
+                
+                <!-- KOLOM KIRI: 5 KOSA KATA ISIM -->
+                <div class="bg-emerald-50/30 rounded-2xl border border-emerald-900/10 p-5 flex flex-col">
+                    <div class="flex items-center justify-between mb-4 pb-3 border-b border-emerald-900/10">
+                        <div class="flex items-center gap-3">
+                            <div class="w-9 h-9 rounded-xl bg-emerald-900 text-gold-400 flex items-center justify-center shadow-sm">
+                                <i class="fa-solid fa-cube text-sm"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-emerald-950 text-base">5 Kosa Kata Isim</h3>
+                                <p class="text-xs text-stone-500">Kata Benda / Sifat (Mufrad & Jamak)</p>
+                            </div>
+                        </div>
+                        <span class="arabic-text text-lg font-bold text-emerald-900 bg-emerald-100/70 px-3 py-0.5 rounded-lg leading-normal">الْاِسْمُ</span>
+                    </div>
+
+                    <!-- Daftar Isim -->
+                    <div id="isim-list" class="space-y-3 flex-grow">
+                        <!-- Diisi oleh JavaScript -->
+                    </div>
+                </div>
+
+                <!-- KOLOM KANAN: 5 KOSA KATA FI'IL -->
+                <div class="bg-gold-50/60 rounded-2xl border border-gold-500/15 p-5 flex flex-col">
+                    <div class="flex items-center justify-between mb-4 pb-3 border-b border-gold-500/15">
+                        <div class="flex items-center gap-3">
+                            <div class="w-9 h-9 rounded-xl bg-gold-500 text-white flex items-center justify-center shadow-sm">
+                                <i class="fa-solid fa-bolt text-sm"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-stone-900 text-base">5 Kosa Kata Fi'il</h3>
+                                <p class="text-xs text-stone-500">Kata Kerja (Madhi & Mudhari')</p>
+                            </div>
+                        </div>
+                        <span class="arabic-text text-lg font-bold text-gold-800 bg-gold-100 px-3 py-0.5 rounded-lg leading-normal">الْفِعْلُ</span>
+                    </div>
+
+                    <!-- Daftar Fi'il -->
+                    <div id="fiil-list" class="space-y-3 flex-grow">
+                        <!-- Diisi oleh JavaScript -->
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- BAGIAN 2: CONTOH KALIMAT DASAR -->
+        <section class="bg-white rounded-3xl shadow-elegant border border-stone-200/70 overflow-hidden">
+            <div class="bg-gradient-to-r from-sand/70 via-white to-sand/70 border-b border-stone-200/70 px-6 py-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                <div class="flex items-start gap-3.5">
+                    <span class="w-8 h-8 rounded-full bg-emerald-950 text-gold-400 text-xs font-bold flex items-center justify-center flex-shrink-0 mt-0.5 shadow-sm border border-gold-400/30">02</span>
+                    <div>
+                        <h2 class="text-lg sm:text-xl font-bold text-stone-900 tracking-tight">Contoh Kalimat Dasar</h2>
+                        <p class="text-xs sm:text-sm text-stone-500 mt-0.5">Penerapan praktis yang dirangkai dari kosa kata <strong>Isim</strong> dan <strong>Fi'il</strong> di atas.</p>
+                    </div>
+                </div>
+
+                <button id="btn-update-examples" onclick="generateExamplesFromCurrentVocab()" class="w-full sm:w-auto bg-white hover:bg-stone-50 active:scale-[0.98] text-emerald-900 font-semibold text-sm px-5 py-2.5 rounded-2xl border border-stone-300 hover:border-emerald-700 shadow-sm transition-all flex items-center justify-center gap-2 cursor-pointer">
+                    <i id="icon-update-examples" class="fa-solid fa-wand-magic-sparkles text-gold-500"></i>
+                    <span>Variasi Kalimat Baru</span>
+                </button>
+            </div>
+
+            <div class="p-6">
+                <div id="examples-container" class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                    <!-- Diisi oleh JavaScript -->
+                </div>
+            </div>
+        </section>
+
+        <!-- BAGIAN 3: PENERJEMAH DUA ARAH -->
+        <section class="bg-white rounded-3xl shadow-elegant border border-stone-200/70 overflow-hidden">
+            <div class="bg-gradient-to-r from-sand/70 via-white to-sand/70 border-b border-stone-200/70 px-6 py-5 flex items-start gap-3.5">
+                <span class="w-8 h-8 rounded-full bg-emerald-950 text-gold-400 text-xs font-bold flex items-center justify-center flex-shrink-0 mt-0.5 shadow-sm border border-gold-400/30">03</span>
+                <div>
+                    <h2 class="text-lg sm:text-xl font-bold text-stone-900 tracking-tight">Penerjemah Arab ↔ Indonesia</h2>
+                    <p class="text-xs sm:text-sm text-stone-500 mt-0.5">Terjemahan presisi dua arah lengkap dengan harakat, cara baca, dan catatan kosa kata.</p>
+                </div>
+            </div>
+
+            <div class="p-6 grid grid-cols-1 lg:grid-cols-2 gap-7">
+                
+                <!-- Kolom Kiri: Arab ke Indonesia -->
+                <div class="border border-stone-200/90 rounded-2xl p-5 bg-ivory/60 flex flex-col justify-between space-y-4">
+                    <div>
+                        <div class="flex items-center justify-between mb-3">
+                            <label for="input-ar-id" class="text-sm font-bold text-stone-800 flex items-center gap-2">
+                                <span class="px-2.5 py-0.5 bg-emerald-900 text-gold-400 rounded-md text-xs font-semibold tracking-wide">AR → ID</span>
+                                <span>Arab ke Indonesia</span>
+                            </label>
+                            <button onclick="clearInput('input-ar-id', 'result-ar-id')" class="text-xs text-stone-400 hover:text-stone-700 transition-colors cursor-pointer">Bersihkan</button>
+                        </div>
+                        <textarea id="input-ar-id" rows="3" dir="rtl" placeholder="اُكْتُبِ النَّصَّ الْعَرَبِيَّ هُنَا..." class="w-full p-4 rounded-xl border border-stone-200 focus:ring-2 focus:ring-emerald-800/20 focus:border-emerald-800 outline-none arabic-text text-2xl bg-white shadow-inner transition-all"></textarea>
+                    </div>
+
+                    <button id="btn-trans-ar-id" onclick="translateText('ar-to-id')" class="w-full bg-emerald-900 hover:bg-emerald-800 text-white font-medium text-sm py-3 px-4 rounded-xl shadow-sm transition-all flex items-center justify-center gap-2 cursor-pointer">
+                        <i class="fa-solid fa-language text-gold-400"></i>
+                        <span>Terjemahkan ke Indonesia</span>
+                    </button>
+
+                    <!-- Hasil Terjemahan Arab -> Indo -->
+                    <div id="result-ar-id" class="hidden bg-white border border-stone-200 rounded-xl p-4 space-y-2.5 shadow-card">
+                        <!-- Konten dinamis -->
+                    </div>
+                </div>
+
+                <!-- Kolom Kanan: Indonesia ke Arab -->
+                <div class="border border-stone-200/90 rounded-2xl p-5 bg-ivory/60 flex flex-col justify-between space-y-4">
+                    <div>
+                        <div class="flex items-center justify-between mb-3">
+                            <label for="input-id-ar" class="text-sm font-bold text-stone-800 flex items-center gap-2">
+                                <span class="px-2.5 py-0.5 bg-gold-500 text-white rounded-md text-xs font-semibold tracking-wide">ID → AR</span>
+                                <span>Indonesia ke Arab (Berharakat)</span>
+                            </label>
+                            <button onclick="clearInput('input-id-ar', 'result-id-ar')" class="text-xs text-stone-400 hover:text-stone-700 transition-colors cursor-pointer">Bersihkan</button>
+                        </div>
+                        <textarea id="input-id-ar" rows="3" placeholder="Tulis kalimat Bahasa Indonesia... (Contoh: Saya sedang membaca buku di perpustakaan)" class="w-full p-4 rounded-xl border border-stone-200 focus:ring-2 focus:ring-gold-500/20 focus:border-gold-500 outline-none text-sm bg-white shadow-inner transition-all leading-relaxed"></textarea>
+                    </div>
+
+                    <button id="btn-trans-id-ar" onclick="translateText('id-to-ar')" class="w-full bg-stone-900 hover:bg-stone-800 text-white font-medium text-sm py-3 px-4 rounded-xl shadow-sm transition-all flex items-center justify-center gap-2 cursor-pointer">
+                        <i class="fa-solid fa-language text-gold-400"></i>
+                        <span>Terjemahkan ke Bahasa Arab</span>
+                    </button>
+
+                    <!-- Hasil Terjemahan Indo -> Arab -->
+                    <div id="result-id-ar" class="hidden bg-white border border-stone-200 rounded-xl p-4 space-y-2.5 shadow-card">
+                        <!-- Konten dinamis -->
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- BAGIAN 4: KONSULTASI KAIDAH BAHASA ARAB DASAR -->
+        <section class="bg-white rounded-3xl shadow-elegant border border-stone-200/70 overflow-hidden">
+            <div class="islamic-pattern text-white px-6 py-5 border-b border-gold-400/20 flex items-start gap-3.5">
+                <span class="w-8 h-8 rounded-full bg-gold-400 text-emerald-950 text-xs font-bold flex items-center justify-center flex-shrink-0 mt-0.5 shadow-sm">04</span>
+                <div>
+                    <h2 class="text-lg sm:text-xl font-bold tracking-tight">Konsultasi Kaidah Dasar (Nahwu & Sharaf)</h2>
+                    <p class="text-xs sm:text-sm text-emerald-100/80 mt-0.5">Diskusikan struktur kalimat, perubahan kata kerja, dan aturan harakat bersama Ustadz AI.</p>
+                </div>
+            </div>
+
+            <div class="p-6 space-y-5">
+                <!-- Pertanyaan Cepat -->
+                <div>
+                    <span class="text-[11px] font-bold text-stone-400 uppercase tracking-widest block mb-2.5">Topik Populer:</span>
+                    <div class="flex flex-wrap gap-2">
+                        <button onclick="askQuickGrammar('Apa perbedaan mendasar antara Isim dan Fi\'il beserta tanda-tandanya?')" class="text-xs bg-ivory hover:bg-emerald-900 hover:text-white text-stone-700 border border-stone-200/90 hover:border-emerald-900 px-3.5 py-2 rounded-full transition-all cursor-pointer font-medium">
+                            Perbedaan Isim & Fi'il
+                        </button>
+                        <button onclick="askQuickGrammar('Bagaimana cara membedakan Fi\'il Madhi dan Fi\'il Mudhari\' dalam kalimat?')" class="text-xs bg-ivory hover:bg-emerald-900 hover:text-white text-stone-700 border border-stone-200/90 hover:border-emerald-900 px-3.5 py-2 rounded-full transition-all cursor-pointer font-medium">
+                            Fi'il Madhi vs Mudhari'
+                        </button>
+                        <button onclick="askQuickGrammar('Jelaskan konsep dasar Mubtada dan Khabar beserta contoh sederhananya!')" class="text-xs bg-ivory hover:bg-emerald-900 hover:text-white text-stone-700 border border-stone-200/90 hover:border-emerald-900 px-3.5 py-2 rounded-full transition-all cursor-pointer font-medium">
+                            Konsep Mubtada & Khabar
+                        </button>
+                        <button onclick="askQuickGrammar('Kapan kata benda Arab berharakat akhir Dhommah, Fathah, atau Kasrah?')" class="text-xs bg-ivory hover:bg-emerald-900 hover:text-white text-stone-700 border border-stone-200/90 hover:border-emerald-900 px-3.5 py-2 rounded-full transition-all cursor-pointer font-medium">
+                            Aturan Harakat Akhir (I'rab)
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Area Chat Konsultasi -->
+                <div id="grammar-chat-box" class="bg-ivory/80 border border-stone-200/80 rounded-2xl p-5 h-80 overflow-y-auto space-y-4 shadow-inner">
+                    <!-- Pesan Sambutan Awal -->
+                    <div class="flex items-start gap-3.5">
+                        <div class="w-9 h-9 rounded-full bg-emerald-900 text-gold-400 border border-gold-400/30 flex items-center justify-center flex-shrink-0 mt-0.5 shadow-sm">
+                            <i class="fa-solid fa-graduation-cap text-sm"></i>
+                        </div>
+                        <div class="bg-white border border-stone-200/80 rounded-2xl rounded-tl-none p-4 text-sm text-stone-700 shadow-card max-w-3xl leading-relaxed">
+                            <p class="font-bold text-emerald-950 mb-1">Assalamu'alaikum warahmatullah.</p>
+                            <p>Silakan ajukan pertanyaan seputar kaidah Bahasa Arab dasar (Nahwu & Sharaf), atau tanyakan analisis tata bahasa dari kosa kata yang tampil di halaman ini.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Form Input Pertanyaan Kaidah -->
+                <form id="grammar-form" onsubmit="handleGrammarSubmit(event)" class="flex flex-col sm:flex-row gap-3">
+                    <input type="text" id="grammar-input" placeholder="Tulis pertanyaan kaidah bahasa Arab Anda di sini..." class="flex-grow px-4 py-3.5 rounded-2xl border border-stone-300 focus:ring-2 focus:ring-emerald-800/20 focus:border-emerald-800 outline-none text-sm bg-white transition-all" required>
+                    <button type="submit" id="btn-ask-grammar" class="bg-emerald-900 hover:bg-emerald-800 text-white font-semibold text-sm px-6 py-3.5 rounded-2xl shadow-sm transition-all flex items-center justify-center gap-2 cursor-pointer flex-shrink-0">
+                        <span>Tanya Ustadz AI</span>
+                        <i class="fa-solid fa-paper-plane text-gold-400 text-xs"></i>
+                    </button>
+                </form>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-white border-t border-stone-200/80 py-6 text-center text-xs text-stone-400 mt-auto">
+        <p class="tracking-wide">Mufrodat Harian &bull; Dirancang untuk kenyamanan belajar Bahasa Arab setiap hari.</p>
+        <p class="mt-2 text-[11px] font-semibold tracking-wider text-emerald-800">Created by Alwy Khuzaimah</p>
+    </footer>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        const apiKey = ""; 
+        const GEMINI_TEXT_MODEL = "gemini-3-flash-preview";
+        const GEMINI_TTS_MODEL = "gemini-2.5-flash-preview-tts";
+
+        let currentVocab = {
+            isim: [
+                { arab: "كِتَابٌ", jamak: "كُتُبٌ", latin: "Kitābun", arti: "Buku" },
+                { arab: "قَلَمٌ", jamak: "أَقْلَامٌ", latin: "Qalamun", arti: "Pena / Pulpen" },
+                { arab: "مَدْرَسَةٌ", jamak: "مَدَارِسُ", latin: "Madrasatun", arti: "Sekolah" },
+                { arab: "بَيْتٌ", jamak: "بُيُوتٌ", latin: "Baytun", arti: "Rumah" },
+                { arab: "طَالِبٌ", jamak: "طُلَّابٌ", latin: "Ṭālibun", arti: "Siswa / Pelajar" }
+            ],
+            fiil: [
+                { madhi: "ذَهَبَ", mudhari: "يَذْهَبُ", latin: "Dzahaba - Yadzhabu", arti: "Pergi" },
+                { madhi: "كَتَبَ", mudhari: "يَكْتُبُ", latin: "Kataba - Yaktubu", arti: "Menulis" },
+                { madhi: "قَرَأَ", mudhari: "يَقْرَأُ", latin: "Qara'a - Yaqra'u", arti: "Membaca" },
+                { madhi: "جَلَسَ", mudhari: "يَجْلِسُ", latin: "Jalasa - Yajlisu", arti: "Duduk" },
+                { madhi: "فَتَحَ", mudhari: "يَفْتَحُ", latin: "Fataḥa - Yaftaḥu", arti: "Membuka" }
+            ]
+        };
+
+        let currentExamples = [
+            {
+                arab: "ذَهَبَ الطَّالِبُ إِلَى الْمَدْرَسَةِ",
+                latin: "Dzahabaṭ-ṭālibu ilal-madrasati",
+                arti: "Siswa itu telah pergi ke sekolah.",
+                highlight: "ذَهَبَ (Fi'il Madhi) + الطَّالِبُ & الْمَدْرَسَةِ (Isim)"
+            },
+            {
+                arab: "يَكْتُبُ الطَّالِبُ الدَّرْسَ بِالْقَلَمِ",
+                latin: "Yaktubuṭ-ṭālibud-darsa bil-qalami",
+                arti: "Siswa itu sedang menulis pelajaran dengan pena.",
+                highlight: "يَكْتُبُ (Fi'il Mudhari') + الْقَلَمِ (Isim)"
+            },
+            {
+                arab: "قَرَأْتُ الْكِتَابَ فِي الْبَيْتِ",
+                latin: "Qara'tul-kitāba fil-bayti",
+                arti: "Saya telah membaca buku di dalam rumah.",
+                highlight: "قَرَأَ (Fi'il) + الْكِتَابَ & الْبَيْتِ (Isim)"
+            },
+            {
+                arab: "يَجْلِسُ أَحْمَدُ أَمَامَ الْبَيْتِ",
+                latin: "Yajlisu Aḥmadu amāmal-bayti",
+                arti: "Ahmad sedang duduk di depan rumah.",
+                highlight: "يَجْلِسُ (Fi'il Mudhari') + الْبَيْتِ (Isim)"
+            }
+        ];
+
+        const vocabThemes = [
+            "Kehidupan Sehari-hari di Rumah",
+            "Aktivitas di Sekolah dan Kampus",
+            "Pasar, Makanan, dan Minuman",
+            "Perjalanan dan Transportasi",
+            "Ibadah dan Aktivitas di Masjid",
+            "Alam, Cuaca, dan Lingkungan",
+            "Profesi dan Pekerjaan",
+            "Kesehatan dan Anggota Tubuh",
+            "Waktu, Hari, dan Aktivitas Pagi-Malam",
+            "Teknologi dan Komunikasi Modern"
+        ];
+
+        window.onload = function() {
+            renderVocab();
+            renderExamples();
+        };
+
+        // ==========================================
+        // TOAST NOTIFICATION & COPY
+        // ==========================================
+        function showToast(message, type = 'info') {
+            const container = document.getElementById('toast-container');
+            const toast = document.createElement('div');
+            
+            const colors = {
+                success: 'bg-emerald-950 text-white border-gold-400/40',
+                error: 'bg-red-900 text-white border-red-500/40',
+                info: 'bg-stone-900 text-white border-stone-600/40'
+            };
+
+            const icons = {
+                success: 'fa-circle-check text-gold-400',
+                error: 'fa-circle-exclamation text-red-300',
+                info: 'fa-circle-info text-gold-400'
+            };
+
+            toast.className = `${colors[type]} border px-4 py-3.5 rounded-2xl shadow-xl flex items-center gap-3 text-xs sm:text-sm pointer-events-auto transform transition-all duration-300 translate-y-0 opacity-100 backdrop-blur-md`;
+            toast.innerHTML = `
+                <i class="fa-solid ${icons[type]} text-base"></i>
+                <span class="flex-grow font-medium">${message}</span>
+            `;
+
+            container.appendChild(toast);
+
+            setTimeout(() => {
+                toast.classList.add('opacity-0', '-translate-y-2');
+                setTimeout(() => toast.remove(), 300);
+            }, 3500);
+        }
+
+        function copyTextToClipboard(text) {
+            const tempInput = document.createElement("textarea");
+            tempInput.value = text;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            try {
+                document.execCommand("copy");
+                showToast("Teks Arab berhasil disalin ke papan klip.", "success");
+            } catch (err) {
+                showToast("Gagal menyalin teks.", "error");
+            }
+            document.body.removeChild(tempInput);
+        }
+
+        // ==========================================
+        // API HELPER
+        // ==========================================
+        async function fetchWithRetry(url, options, maxRetries = 4) {
+            let delay = 1000;
+            for (let i = 0; i < maxRetries; i++) {
+                try {
+                    const response = await fetch(url, options);
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! status: ${response.status}`);
+                    }
+                    return await response.json();
+                } catch (error) {
+                    if (i === maxRetries - 1) throw error;
+                    await new Promise(resolve => setTimeout(resolve, delay));
+                    delay *= 2;
+                }
+            }
+        }
+
+        // ==========================================
+        // TEXT-TO-SPEECH
+        // ==========================================
+        let currentAudio = null;
+
+        async function playArabicAudio(arabicText, btnElement) {
+            if (currentAudio) {
+                currentAudio.pause();
+                currentAudio = null;
+            }
+
+            const originalIcon = btnElement.innerHTML;
+            btnElement.innerHTML = `<i class="fa-solid fa-spinner animate-spin-fast"></i>`;
+            btnElement.disabled = true;
+
+            try {
+                const payload = {
+                    contents: [{
+                        parts: [{ text: `Bacakan teks bahasa Arab berikut dengan jelas dan fasih sesuai harakatnya: ${arabicText}` }]
+                    }],
+                    generationConfig: {
+                        responseModalities: ["AUDIO"],
+                        speechConfig: {
+                            voiceConfig: {
+                                prebuiltVoiceConfig: { voiceName: "Charon" }
+                            }
+                        }
+                    },
+                    model: GEMINI_TTS_MODEL
+                };
+
+                const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/${GEMINI_TTS_MODEL}:generateContent?key=${apiKey}`;
+                const result = await fetchWithRetry(apiUrl, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+
+                const part = result?.candidates?.[0]?.content?.parts?.[0];
+                const audioData = part?.inlineData?.data;
+                const mimeType = part?.inlineData?.mimeType;
+
+                if (audioData && mimeType && mimeType.startsWith("audio/")) {
+                    const sampleRateMatch = mimeType.match(/rate=(\d+)/);
+                    const sampleRate = sampleRateMatch ? parseInt(sampleRateMatch[1], 10) : 24000;
+                    const pcmData = base64ToArrayBuffer(audioData);
+                    const pcm16 = new Int16Array(pcmData);
+                    const wavBlob = pcmToWav(pcm16, sampleRate);
+                    const audioUrl = URL.createObjectURL(wavBlob);
+
+                    currentAudio = new Audio(audioUrl);
+                    currentAudio.play();
+                } else {
+                    throw new Error("Format audio tidak didukung");
+                }
+            } catch (error) {
+                showToast("Gagal memutar audio pelafalan.", "error");
+            } finally {
+                btnElement.innerHTML = originalIcon;
+                btnElement.disabled = false;
+            }
+        }
+
+        function base64ToArrayBuffer(base64) {
+            const binaryString = window.atob(base64);
+            const len = binaryString.length;
+            const bytes = new Uint8Array(len);
+            for (let i = 0; i < len; i++) {
+                bytes[i] = binaryString.charCodeAt(i);
+            }
+            return bytes.buffer;
+        }
+
+        function pcmToWav(pcm16, sampleRate) {
+            const buffer = new ArrayBuffer(44 + pcm16.length * 2);
+            const view = new DataView(buffer);
+
+            const writeString = (view, offset, string) => {
+                for (let i = 0; i < string.length; i++) {
+                    view.setUint8(offset + i, string.charCodeAt(i));
+                }
+            };
+
+            writeString(view, 0, 'RIFF');
+            view.setUint32(4, 36 + pcm16.length * 2, true);
+            writeString(view, 8, 'WAVE');
+            writeString(view, 12, 'fmt ');
+            view.setUint32(16, 16, true);
+            view.setUint16(20, 1, true);
+            view.setUint16(22, 1, true);
+            view.setUint32(24, sampleRate, true);
+            view.setUint32(28, sampleRate * 2, true);
+            view.setUint16(32, 2, true);
+            view.setUint16(34, 16, true);
+            writeString(view, 36, 'data');
+            view.setUint32(40, pcm16.length * 2, true);
+
+            let offset = 44;
+            for (let i = 0; i < pcm16.length; i++, offset += 2) {
+                view.setInt16(offset, pcm16[i], true);
+            }
+
+            return new Blob([view], { type: 'audio/wav' });
+        }
+
+        // ==========================================
+        // RENDERING KOSA KATA (ISIM & FI'IL)
+        // ==========================================
+        function renderVocab() {
+            const isimContainer = document.getElementById('isim-list');
+            const fiilContainer = document.getElementById('fiil-list');
+
+            isimContainer.innerHTML = currentVocab.isim.map((item, idx) => `
+                <div class="group bg-white rounded-2xl p-4 border border-stone-200/80 shadow-card hover:border-emerald-700/40 hover:shadow-md transition-all flex items-center justify-between gap-3">
+                    <div class="flex items-center gap-3.5">
+                        <span class="w-7 h-7 rounded-full bg-ivory text-emerald-900 text-xs font-bold flex items-center justify-center border border-stone-200 group-hover:bg-emerald-900 group-hover:text-gold-400 transition-colors flex-shrink-0">${idx + 1}</span>
+                        <div>
+                            <div class="font-bold text-stone-900 text-sm sm:text-base">${item.arti}</div>
+                            <div class="text-xs text-stone-500 mt-0.5">
+                                <span class="italic">${item.latin}</span> 
+                                <span class="mx-1.5 text-stone-300">&bull;</span> 
+                                <span class="text-emerald-800 font-medium">Jamak: <span class="arabic-text text-base not-italic font-bold">${item.jamak}</span></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-2.5">
+                        <span class="arabic-text text-2xl sm:text-3xl font-bold text-emerald-950 select-all">${item.arab}</span>
+                        <button onclick="playArabicAudio('${item.arab}', this)" title="Dengarkan pelafalan" class="w-9 h-9 rounded-xl bg-ivory hover:bg-emerald-900 text-emerald-900 hover:text-gold-400 border border-stone-200/80 flex items-center justify-center transition-all flex-shrink-0 cursor-pointer">
+                            <i class="fa-solid fa-volume-high text-xs"></i>
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+
+            fiilContainer.innerHTML = currentVocab.fiil.map((item, idx) => `
+                <div class="group bg-white rounded-2xl p-4 border border-stone-200/80 shadow-card hover:border-gold-500/50 hover:shadow-md transition-all flex items-center justify-between gap-3">
+                    <div class="flex items-center gap-3.5">
+                        <span class="w-7 h-7 rounded-full bg-ivory text-gold-800 text-xs font-bold flex items-center justify-center border border-stone-200 group-hover:bg-gold-500 group-hover:text-white transition-colors flex-shrink-0">${idx + 1}</span>
+                        <div>
+                            <div class="font-bold text-stone-900 text-sm sm:text-base">${item.arti}</div>
+                            <div class="text-xs text-stone-500 italic mt-0.5">${item.latin}</div>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-2.5">
+                        <div class="text-right">
+                            <div class="arabic-text text-xl sm:text-2xl font-bold text-stone-900 leading-tight">
+                                <span title="Fi'il Madhi">${item.madhi}</span> 
+                                <span class="text-stone-300 mx-0.5 font-sans text-sm">-</span> 
+                                <span title="Fi'il Mudhari'" class="text-gold-600">${item.mudhari}</span>
+                            </div>
+                            <div class="text-[10px] text-stone-400 tracking-wide">Mudhari' &larr; Madhi</div>
+                        </div>
+                        <button onclick="playArabicAudio('${item.madhi}، ${item.mudhari}', this)" title="Dengarkan pelafalan" class="w-9 h-9 rounded-xl bg-ivory hover:bg-gold-500 text-gold-800 hover:text-white border border-stone-200/80 flex items-center justify-center transition-all flex-shrink-0 cursor-pointer">
+                            <i class="fa-solid fa-volume-high text-xs"></i>
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // ==========================================
+        // RENDERING CONTOH KALIMAT DASAR
+        // ==========================================
+        function renderExamples() {
+            const container = document.getElementById('examples-container');
+            container.innerHTML = currentExamples.map((ex, idx) => `
+                <div class="bg-ivory/70 rounded-2xl p-5 border border-stone-200/80 hover:border-emerald-700/30 hover:bg-white hover:shadow-card transition-all flex flex-col justify-between gap-3">
+                    <div class="flex items-center justify-between gap-2">
+                        <span class="text-[11px] font-bold tracking-wider uppercase bg-emerald-950 text-gold-400 px-2.5 py-1 rounded-lg">Contoh 0${idx + 1}</span>
+                        <div class="flex items-center gap-1.5">
+                            <button onclick="copyTextToClipboard('${ex.arab.replace(/'/g, "\\'")}')" title="Salin teks Arab" class="w-8 h-8 rounded-lg text-stone-400 hover:text-emerald-900 hover:bg-stone-100 flex items-center justify-center transition-colors cursor-pointer">
+                                <i class="fa-regular fa-copy text-xs"></i>
+                            </button>
+                            <button onclick="playArabicAudio('${ex.arab.replace(/'/g, "\\'")}', this)" title="Dengarkan kalimat" class="w-8 h-8 rounded-lg text-emerald-900 bg-white border border-stone-200 hover:bg-emerald-900 hover:text-gold-400 flex items-center justify-center transition-colors cursor-pointer shadow-xs">
+                                <i class="fa-solid fa-volume-high text-xs"></i>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <p class="arabic-text text-2xl sm:text-3xl font-bold text-stone-900 text-right my-1">${ex.arab}</p>
+                    
+                    <div class="space-y-1.5 border-t border-stone-200/70 pt-3">
+                        <p class="text-xs text-stone-500 italic">${ex.latin}</p>
+                        <p class="text-sm font-semibold text-stone-800">"${ex.arti}"</p>
+                        <div class="pt-1">
+                            <span class="text-[11px] text-emerald-900 bg-emerald-50 border border-emerald-200/60 inline-block px-2.5 py-0.5 rounded-md font-medium">
+                                <i class="fa-solid fa-tag text-gold-500 mr-1.5"></i>${ex.highlight}
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // ==========================================
+        // UPDATE KOSA KATA BARU
+        // ==========================================
+        async function updateAllVocabulary() {
+            const btn = document.getElementById('btn-update-vocab');
+            const icon = document.getElementById('icon-update-vocab');
+            const isimList = document.getElementById('isim-list');
+            const fiilList = document.getElementById('fiil-list');
+
+            btn.disabled = true;
+            icon.classList.add('animate-spin-fast');
+            
+            const skeletonHtml = Array(5).fill(`
+                <div class="bg-white/80 rounded-2xl p-4 border border-stone-200/70 animate-pulse flex justify-between items-center">
+                    <div class="space-y-2 w-1/2">
+                        <div class="h-4 bg-stone-200 rounded w-3/4"></div>
+                        <div class="h-3 bg-stone-200 rounded w-1/2"></div>
+                    </div>
+                    <div class="h-7 bg-stone-200 rounded w-1/4"></div>
+                </div>
+            `).join('');
+            isimList.innerHTML = skeletonHtml;
+            fiilList.innerHTML = skeletonHtml;
+
+            const randomTheme = vocabThemes[Math.floor(Math.random() * vocabThemes.length)];
+            const previousWords = [
+                ...currentVocab.isim.map(i => i.arti),
+                ...currentVocab.fiil.map(f => f.arti)
+            ].join(", ");
+
+            const prompt = `Buatkan kosa kata bahasa Arab harian untuk pemula dengan tema "${randomTheme}".
+            Hindari kata-kata berikut karena sudah muncul sebelumnya: ${previousWords}.
+            Berikan tepat:
+            1. 5 kosa kata Isim (kata benda atau sifat) lengkap dengan bentuk jamaknya, transliterasi latin, dan arti bahasa Indonesia.
+            2. 5 kosa kata Fi'il (kata kerja) lengkap dengan bentuk Fi'il Madhi (lampau), Fi'il Mudhari' (sekarang/akan datang), transliterasi latin, dan arti bahasa Indonesia.
+            3. 4 contoh kalimat bahasa Arab dasar yang sederhana dan mudah dipahami pemula, WAJIB menggunakan kombinasi kosa kata Isim dan Fi'il yang baru saja Anda buat di atas!
+            PENTING: Semua teks bahasa Arab WAJIB diberi harakat lengkap dan benar (fathah, kasrah, dhommah, sukun, tasydid, tanwin).`;
+
+            const payload = {
+                contents: [{ parts: [{ text: prompt }] }],
+                generationConfig: {
+                    responseMimeType: "application/json",
+                    responseSchema: {
+                        type: "OBJECT",
+                        properties: {
+                            isim: {
+                                type: "ARRAY",
+                                items: {
+                                    type: "OBJECT",
+                                    properties: {
+                                        arab: { type: "STRING" },
+                                        jamak: { type: "STRING" },
+                                        latin: { type: "STRING" },
+                                        arti: { type: "STRING" }
+                                    },
+                                    required: ["arab", "jamak", "latin", "arti"]
+                                }
+                            },
+                            fiil: {
+                                type: "ARRAY",
+                                items: {
+                                    type: "OBJECT",
+                                    properties: {
+                                        madhi: { type: "STRING" },
+                                        mudhari: { type: "STRING" },
+                                        latin: { type: "STRING" },
+                                        arti: { type: "STRING" }
+                                    },
+                                    required: ["madhi", "mudhari", "latin", "arti"]
+                                }
+                            },
+                            examples: {
+                                type: "ARRAY",
+                                items: {
+                                    type: "OBJECT",
+                                    properties: {
+                                        arab: { type: "STRING" },
+                                        latin: { type: "STRING" },
+                                        arti: { type: "STRING" },
+                                        highlight: { type: "STRING" }
+                                    },
+                                    required: ["arab", "latin", "arti", "highlight"]
+                                }
+                            }
+                        },
+                        required: ["isim", "fiil", "examples"]
+                    }
+                }
+            };
+
+            try {
+                const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/${GEMINI_TEXT_MODEL}:generateContent?key=${apiKey}`;
+                const result = await fetchWithRetry(apiUrl, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+
+                const jsonText = result.candidates[0].content.parts[0].text;
+                const data = JSON.parse(jsonText);
+
+                if (data.isim && data.fiil) {
+                    currentVocab = {
+                        isim: data.isim.slice(0, 5),
+                        fiil: data.fiil.slice(0, 5)
+                    };
+                    renderVocab();
+                }
+
+                if (data.examples) {
+                    currentExamples = data.examples.slice(0, 4);
+                    renderExamples();
+                }
+
+                showToast(`Kosa kata baru diperbarui (Tema: ${randomTheme})`, "success");
+            } catch (error) {
+                renderVocab();
+                showToast("Gagal memperbarui kosa kata. Periksa koneksi Anda.", "error");
+            } finally {
+                btn.disabled = false;
+                icon.classList.remove('animate-spin-fast');
+            }
+        }
+
+        // ==========================================
+        // UPDATE CONTOH KALIMAT
+        // ==========================================
+        async function generateExamplesFromCurrentVocab() {
+            const btn = document.getElementById('btn-update-examples');
+            const icon = document.getElementById('icon-update-examples');
+            const container = document.getElementById('examples-container');
+
+            btn.disabled = true;
+            icon.classList.add('animate-spin-fast');
+
+            container.innerHTML = Array(4).fill(`
+                <div class="bg-ivory rounded-2xl p-5 border border-stone-200 animate-pulse space-y-3">
+                    <div class="h-4 bg-stone-200 rounded w-1/4"></div>
+                    <div class="h-7 bg-stone-200 rounded w-3/4 ml-auto"></div>
+                    <div class="h-4 bg-stone-200 rounded w-2/3"></div>
+                </div>
+            `).join('');
+
+            const isimStr = currentVocab.isim.map(i => `${i.arab} (${i.arti})`).join(", ");
+            const fiilStr = currentVocab.fiil.map(f => `${f.madhi}/${f.mudhari} (${f.arti})`).join(", ");
+
+            const prompt = `Buatkan 4 contoh kalimat bahasa Arab dasar yang BARU dan BERVARIASI (kalimat positif, negatif, atau tanya sederhana) dengan menggabungkan kosa kata Isim dan Fi'il berikut ini:
+            - Daftar Isim: ${isimStr}
+            - Daftar Fi'il: ${fiilStr}
+            
+            Pastikan setiap kalimat memiliki harakat lengkap dan benar, cara baca latin, arti bahasa Indonesia, dan keterangan unsur Isim/Fi'il mana yang digunakan dari daftar tersebut.`;
+
+            const payload = {
+                contents: [{ parts: [{ text: prompt }] }],
+                generationConfig: {
+                    responseMimeType: "application/json",
+                    responseSchema: {
+                        type: "ARRAY",
+                        items: {
+                            type: "OBJECT",
+                            properties: {
+                                arab: { type: "STRING" },
+                                latin: { type: "STRING" },
+                                arti: { type: "STRING" },
+                                highlight: { type: "STRING" }
+                            },
+                            required: ["arab", "latin", "arti", "highlight"]
+                        }
+                    }
+                }
+            };
+
+            try {
+                const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/${GEMINI_TEXT_MODEL}:generateContent?key=${apiKey}`;
+                const result = await fetchWithRetry(apiUrl, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+
+                const jsonText = result.candidates[0].content.parts[0].text;
+                const newExamples = JSON.parse(jsonText);
+                
+                if (Array.isArray(newExamples) && newExamples.length > 0) {
+                    currentExamples = newExamples.slice(0, 4);
+                    renderExamples();
+                    showToast("Variasi contoh kalimat berhasil diperbarui.", "success");
+                }
+            } catch (error) {
+                renderExamples();
+                showToast("Gagal memperbarui contoh kalimat.", "error");
+            } finally {
+                btn.disabled = false;
+                icon.classList.remove('animate-spin-fast');
+            }
+        }
+
+        // ==========================================
+        // PENERJEMAH DUA ARAH
+        // ==========================================
+        function clearInput(inputId, resultId) {
+            document.getElementById(inputId).value = '';
+            const resBox = document.getElementById(resultId);
+            resBox.classList.add('hidden');
+            resBox.innerHTML = '';
+        }
+
+        async function translateText(direction) {
+            const isArToId = direction === 'ar-to-id';
+            const inputEl = document.getElementById(isArToId ? 'input-ar-id' : 'input-id-ar');
+            const btnEl = document.getElementById(isArToId ? 'btn-trans-ar-id' : 'btn-trans-id-ar');
+            const resultEl = document.getElementById(isArToId ? 'result-ar-id' : 'result-id-ar');
+
+            const text = inputEl.value.trim();
+            if (!text) {
+                showToast("Silakan masukkan teks terlebih dahulu.", "info");
+                inputEl.focus();
+                return;
+            }
+
+            const originalBtnHtml = btnEl.innerHTML;
+            btnEl.disabled = true;
+            btnEl.innerHTML = `<i class="fa-solid fa-spinner animate-spin-fast"></i> <span>Menerjemahkan...</span>`;
+
+            const prompt = isArToId 
+                ? `Terjemahkan teks Bahasa Arab berikut ke dalam Bahasa Indonesia yang baik dan natural. Sertakan juga versi teks Arab dengan harakat lengkap, cara baca latin, dan rincian kosa kata penting (Isim/Fi'il) di dalamnya. Teks: "${text}"`
+                : `Terjemahkan kalimat Bahasa Indonesia berikut ke dalam Bahasa Arab Fusha yang benar dan alami, WAJIB disertai harakat lengkap, cara baca latin, serta catatan singkat struktur kalimatnya. Teks: "${text}"`;
+
+            const payload = {
+                contents: [{ parts: [{ text: prompt }] }],
+                generationConfig: {
+                    responseMimeType: "application/json",
+                    responseSchema: {
+                        type: "OBJECT",
+                        properties: {
+                            arabicWithHarakat: { type: "STRING" },
+                            latin: { type: "STRING" },
+                            indonesian: { type: "STRING" },
+                            breakdown: { type: "STRING" }
+                        },
+                        required: ["arabicWithHarakat", "latin", "indonesian", "breakdown"]
+                    }
+                }
+            };
+
+            try {
+                const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/${GEMINI_TEXT_MODEL}:generateContent?key=${apiKey}`;
+                const result = await fetchWithRetry(apiUrl, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+
+                const data = JSON.parse(result.candidates[0].content.parts[0].text);
+
+                resultEl.classList.remove('hidden');
+                resultEl.innerHTML = `
+                    <div class="flex items-center justify-between border-b border-stone-100 pb-2.5">
+                        <span class="text-[11px] font-bold text-stone-400 uppercase tracking-wider">Hasil Terjemahan</span>
+                        <div class="flex items-center gap-1.5">
+                            <button onclick="copyTextToClipboard('${data.arabicWithHarakat.replace(/'/g, "\\'")}')" title="Salin teks Arab" class="text-xs text-stone-500 hover:text-emerald-900 px-2.5 py-1 rounded-lg hover:bg-stone-100 cursor-pointer transition-colors">
+                                <i class="fa-regular fa-copy mr-1"></i>Salin
+                            </button>
+                            <button onclick="playArabicAudio('${data.arabicWithHarakat.replace(/'/g, "\\'")}', this)" title="Dengarkan" class="text-xs text-emerald-900 bg-ivory border border-stone-200 hover:bg-emerald-900 hover:text-gold-400 px-2.5 py-1 rounded-lg cursor-pointer transition-colors">
+                                <i class="fa-solid fa-volume-high"></i>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="arabic-text text-2xl sm:text-3xl font-bold text-stone-900 text-right py-1">${data.arabicWithHarakat}</div>
+                    <div class="text-xs text-stone-500 italic">${data.latin}</div>
+                    <div class="text-sm font-semibold text-emerald-950 bg-emerald-50/70 p-3 rounded-xl border border-emerald-900/10">
+                        ${data.indonesian}
+                    </div>
+                    <div class="text-xs text-stone-600 pt-1 leading-relaxed">
+                        <span class="font-semibold text-stone-800"><i class="fa-solid fa-circle-info text-gold-500 mr-1.5"></i>Catatan Kosa Kata:</span> ${data.breakdown}
+                    </div>
+                `;
+            } catch (error) {
+                showToast("Terjadi kesalahan saat menerjemahkan.", "error");
+            } finally {
+                btnEl.disabled = false;
+                btnEl.innerHTML = originalBtnHtml;
+            }
+        }
+
+        // ==========================================
+        // KONSULTASI KAIDAH BAHASA ARAB DASAR
+        // ==========================================
+        function askQuickGrammar(questionText) {
+            const input = document.getElementById('grammar-input');
+            input.value = questionText;
+            document.getElementById('grammar-form').dispatchEvent(new Event('submit'));
+        }
+
+        function appendChatMessage(sender, htmlContent) {
+            const chatBox = document.getElementById('grammar-chat-box');
+            const wrapper = document.createElement('div');
+
+            if (sender === 'user') {
+                wrapper.className = "flex items-start justify-end gap-3.5";
+                wrapper.innerHTML = `
+                    <div class="bg-emerald-900 text-white rounded-2xl rounded-tr-none p-4 text-sm shadow-sm max-w-2xl leading-relaxed">
+                        ${htmlContent}
+                    </div>
+                    <div class="w-9 h-9 rounded-full bg-stone-200 text-stone-700 flex items-center justify-center flex-shrink-0 mt-0.5">
+                        <i class="fa-solid fa-user text-xs"></i>
+                    </div>
+                `;
+            } else {
+                wrapper.className = "flex items-start gap-3.5";
+                wrapper.innerHTML = `
+                    <div class="w-9 h-9 rounded-full bg-emerald-900 text-gold-400 border border-gold-400/30 flex items-center justify-center flex-shrink-0 mt-0.5 shadow-sm">
+                        <i class="fa-solid fa-graduation-cap text-sm"></i>
+                    </div>
+                    <div class="bg-white border border-stone-200/80 rounded-2xl rounded-tl-none p-4 text-sm text-stone-700 shadow-card max-w-3xl space-y-2 leading-relaxed">
+                        ${htmlContent}
+                    </div>
+                `;
+            }
+
+            chatBox.appendChild(wrapper);
+            chatBox.scrollTop = chatBox.scrollHeight;
+            return wrapper;
+        }
+
+        function formatGrammarResponse(text) {
+            return text
+                .replace(/\*\*(.*?)\*\*/g, '<strong class="text-stone-950 font-semibold">$1</strong>')
+                .replace(/\*(.*?)\*/g, '<em>$1</em>')
+                .replace(/\n/g, '<br>');
+        }
+
+        async function handleGrammarSubmit(event) {
+            event.preventDefault();
+            const inputEl = document.getElementById('grammar-input');
+            const btnEl = document.getElementById('btn-ask-grammar');
+            const question = inputEl.value.trim();
+
+            if (!question) return;
+
+            appendChatMessage('user', question);
+            inputEl.value = '';
+            inputEl.disabled = true;
+            btnEl.disabled = true;
+
+            const loadingMsg = appendChatMessage('ai', `
+                <div class="flex items-center gap-2.5 text-stone-500">
+                    <i class="fa-solid fa-spinner animate-spin-fast text-emerald-800"></i>
+                    <span>Ustadz AI sedang menyusun penjelasan kaidah...</span>
+                </div>
+            `);
+
+            const currentContext = `Kosa kata yang sedang ditampilkan di layar pengguna saat ini:
+            Isim: ${currentVocab.isim.map(i => i.arab + ' (' + i.arti + ')').join(', ')}
+            Fi'il: ${currentVocab.fiil.map(f => f.madhi + '/' + f.mudhari + ' (' + f.arti + ')').join(', ')}`;
+
+            const systemPrompt = `Anda adalah Ustadz / Pengajar Bahasa Arab yang ramah, sabar, dan ahli dalam kaidah Nahwu dan Sharaf tingkat dasar. 
+            Tugas Anda adalah menjawab pertanyaan pengguna seputar kaidah bahasa Arab dasar dengan bahasa Indonesia yang mudah dipahami oleh pemula.
+            Aturan penting:
+            1. Gunakan poin-poin yang rapi agar mudah dibaca.
+            2. Setiap menuliskan contoh kata atau kalimat Bahasa Arab, WAJIB menyertakan harakat lengkap dan artinya.
+            3. Jika pengguna merujuk pada kosa kata di atas, gunakan data konteks berikut: ${currentContext}`;
+
+            const payload = {
+                contents: [{ parts: [{ text: question }] }],
+                systemInstruction: {
+                    parts: [{ text: systemPrompt }]
+                }
+            };
+
+            try {
+                const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/${GEMINI_TEXT_MODEL}:generateContent?key=${apiKey}`;
+                const result = await fetchWithRetry(apiUrl, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+
+                const replyText = result.candidates?.[0]?.content?.parts?.[0]?.text || "Maaf, saya tidak dapat memproses jawaban saat ini.";
+                loadingMsg.remove();
+                appendChatMessage('ai', formatGrammarResponse(replyText));
+            } catch (error) {
+                loadingMsg.remove();
+                appendChatMessage('ai', `<span class="text-red-700"><i class="fa-solid fa-triangle-exclamation mr-1"></i> Maaf, terjadi gangguan koneksi saat menghubungi Ustadz AI.</span>`);
+            } finally {
+                inputEl.disabled = false;
+                btnEl.disabled = false;
+                inputEl.focus();
+            }
+        }
+    </script>
+</body>
+</html>
