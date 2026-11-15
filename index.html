@@ -9,7 +9,7 @@
     <!-- Google Fonts: Plus Jakarta Sans, Playfair Display & Amiri -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Naskh+Arabic:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
     <!-- Font Awesome untuk Ikon -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
@@ -55,9 +55,20 @@
     <style>
         /* Kustomisasi keterbacaan teks Arab */
         .arabic-text {
-            font-family: 'Amiri', serif;
-            line-height: 2.2;
+            font-family: 'Noto Naskh Arabic', 'Amiri', serif;
+            line-height: 1.9;
+            font-weight: 600;
+            font-feature-settings: 'kern' 1, 'liga' 1;
             direction: rtl;
+        }
+        /* Kartu mufrodat: ruang teks terpisah agar tidak saling bertumpuk */
+        .vocab-card { min-width: 0; overflow: visible; }
+        .vocab-card .arabic-text { display: inline-block; max-width: 100%; white-space: normal; overflow-wrap: anywhere; }
+        .vocab-arabic { min-width: 0; }
+        #isim-list, #fiil-list { min-width: 0; }
+        @media (max-width: 420px) {
+            .vocab-card { padding: 0.9rem; }
+            .vocab-arabic .arabic-text { font-size: 1.75rem; }
         }
         /* Pola geometris Islami yang sangat halus */
         .islamic-pattern {
@@ -565,44 +576,41 @@
             const fiilContainer = document.getElementById('fiil-list');
 
             isimContainer.innerHTML = currentVocab.isim.map((item, idx) => `
-                <div class="group bg-white rounded-2xl p-4 border border-stone-200/80 shadow-card hover:border-emerald-700/40 hover:shadow-md transition-all flex items-center justify-between gap-3">
-                    <div class="flex items-center gap-3.5">
-                        <span class="w-7 h-7 rounded-full bg-ivory text-emerald-900 text-xs font-bold flex items-center justify-center border border-stone-200 group-hover:bg-emerald-900 group-hover:text-gold-400 transition-colors flex-shrink-0">${idx + 1}</span>
-                        <div>
-                            <div class="font-bold text-stone-900 text-sm sm:text-base">${item.arti}</div>
-                            <div class="text-xs text-stone-500 mt-0.5">
-                                <span class="italic">${item.latin}</span> 
-                                <span class="mx-1.5 text-stone-300">&bull;</span> 
-                                <span class="text-emerald-800 font-medium">Jamak: <span class="arabic-text text-base not-italic font-bold">${item.jamak}</span></span>
+                <article class="vocab-card group bg-white rounded-2xl p-4 sm:p-4 border border-stone-200/80 shadow-card hover:border-emerald-700/40 hover:shadow-md transition-all">
+                    <div class="flex items-start gap-3 min-w-0">
+                        <span class="w-7 h-7 rounded-full bg-ivory text-emerald-900 text-xs font-bold flex items-center justify-center border border-stone-200 flex-shrink-0">${idx + 1}</span>
+                        <div class="min-w-0 flex-1">
+                            <div class="font-bold text-stone-900 text-sm sm:text-base break-words">${item.arti}</div>
+                            <div class="text-xs text-stone-500 mt-1 flex flex-wrap items-center gap-x-2 gap-y-1">
+                                <span class="italic">${item.latin}</span>
+                                <span class="text-emerald-800 font-medium">Jamak: <span class="arabic-text text-lg not-italic font-bold">${item.jamak}</span></span>
                             </div>
                         </div>
                     </div>
-                    <div class="flex items-center gap-2.5">
-                        <span class="arabic-text text-2xl sm:text-3xl font-bold text-emerald-950 select-all">${item.arab}</span>
+                    <div class="vocab-arabic mt-3 pt-2 border-t border-stone-100 text-right" dir="rtl">
+                        <span class="arabic-text text-3xl sm:text-3xl font-bold text-emerald-950 select-all">${item.arab}</span>
                     </div>
-                </div>
+                </article>
             `).join('');
 
             fiilContainer.innerHTML = currentVocab.fiil.map((item, idx) => `
-                <div class="group bg-white rounded-2xl p-4 border border-stone-200/80 shadow-card hover:border-gold-500/50 hover:shadow-md transition-all flex items-center justify-between gap-3">
-                    <div class="flex items-center gap-3.5">
-                        <span class="w-7 h-7 rounded-full bg-ivory text-gold-800 text-xs font-bold flex items-center justify-center border border-stone-200 group-hover:bg-gold-500 group-hover:text-white transition-colors flex-shrink-0">${idx + 1}</span>
-                        <div>
-                            <div class="font-bold text-stone-900 text-sm sm:text-base">${item.arti}</div>
-                            <div class="text-xs text-stone-500 italic mt-0.5">${item.latin}</div>
+                <article class="vocab-card group bg-white rounded-2xl p-4 sm:p-4 border border-stone-200/80 shadow-card hover:border-gold-500/50 hover:shadow-md transition-all">
+                    <div class="flex items-start gap-3 min-w-0">
+                        <span class="w-7 h-7 rounded-full bg-ivory text-gold-800 text-xs font-bold flex items-center justify-center border border-stone-200 flex-shrink-0">${idx + 1}</span>
+                        <div class="min-w-0 flex-1">
+                            <div class="font-bold text-stone-900 text-sm sm:text-base break-words">${item.arti}</div>
+                            <div class="text-xs text-stone-500 italic mt-1 break-words">${item.latin}</div>
                         </div>
                     </div>
-                    <div class="flex items-center gap-2.5">
-                        <div class="text-right">
-                            <div class="arabic-text text-xl sm:text-2xl font-bold text-stone-900 leading-tight">
-                                <span title="Fi'il Madhi">${item.madhi}</span> 
-                                <span class="text-stone-300 mx-0.5 font-sans text-sm">-</span> 
-                                <span title="Fi'il Mudhari'" class="text-gold-600">${item.mudhari}</span>
-                            </div>
-                            <div class="text-[10px] text-stone-400 tracking-wide">Mudhari' &larr; Madhi</div>
+                    <div class="vocab-arabic mt-3 pt-2 border-t border-stone-100 text-right" dir="rtl">
+                        <div class="arabic-text text-2xl sm:text-3xl font-bold text-stone-900 leading-relaxed">
+                            <span title="Fi'il Madhi">${item.madhi}</span>
+                            <span class="text-stone-300 mx-1 font-sans text-base">—</span>
+                            <span title="Fi'il Mudhari'" class="text-gold-600">${item.mudhari}</span>
                         </div>
+                        <div class="text-[10px] text-stone-400 tracking-wide mt-1">Madhi — Mudhari'</div>
                     </div>
-                </div>
+                </article>
             `).join('');
         }
 
