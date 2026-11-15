@@ -422,27 +422,31 @@
         let currentExamples = [
             {
                 arab: "ذَهَبَ الطَّالِبُ إِلَى الْمَدْرَسَةِ",
-                latin: "Dzahabaṭ-ṭālibu ilal-madrasati",
+                latin: "Dzahaba ath-thālibu ilā al-madrasati",
                 arti: "Siswa itu telah pergi ke sekolah.",
-                highlight: "ذَهَبَ (Fi'il Madhi) + الطَّالِبُ & الْمَدْرَسَةِ (Isim)"
+                highlight: "ذَهَبَ: fi'il māḍī; الطَّالِبُ: fā'il marfū' dengan ḍammah; الْمَدْرَسَةِ: isim majrūr setelah إِلَى dengan kasrah.",
+                irab: "ذَهَبَ: فعل ماضٍ مبني على الفتح. الطَّالِبُ: فاعل مرفوع وعلامة رفعه الضمة. إِلَى: حرف جر. الْمَدْرَسَةِ: اسم مجرور بإلى وعلامة جره الكسرة."
             },
             {
                 arab: "يَكْتُبُ الطَّالِبُ الدَّرْسَ بِالْقَلَمِ",
-                latin: "Yaktubuṭ-ṭālibud-darsa bil-qalami",
+                latin: "Yaktubu ath-thālibu ad-darsa bil-qalami",
                 arti: "Siswa itu sedang menulis pelajaran dengan pena.",
-                highlight: "يَكْتُبُ (Fi'il Mudhari') + الْقَلَمِ (Isim)"
+                highlight: "يَكْتُبُ: fi'il muḍāri' marfū'; الطَّالِبُ: fā'il marfū' dengan ḍammah; الدَّرْسَ: maf'ūl bih manṣūb dengan fatḥah; الْقَلَمِ: majrūr setelah بِـ.",
+                irab: "يَكْتُبُ: فعل مضارع مرفوع وعلامة رفعه الضمة. الطَّالِبُ: فاعل مرفوع بالضمة. الدَّرْسَ: مفعول به منصوب بالفتحة. بِـ: حرف جر. الْقَلَمِ: اسم مجرور بالباء وعلامة جره الكسرة."
             },
             {
                 arab: "قَرَأْتُ الْكِتَابَ فِي الْبَيْتِ",
-                latin: "Qara'tul-kitāba fil-bayti",
+                latin: "Qara'tu al-kitāba fil-bayti",
                 arti: "Saya telah membaca buku di dalam rumah.",
-                highlight: "قَرَأَ (Fi'il) + الْكِتَابَ & الْبَيْتِ (Isim)"
+                highlight: "قَرَأْتُ: fi'il māḍī + tā' sebagai fā'il; الْكِتَابَ: maf'ūl bih manṣūb dengan fatḥah; الْبَيْتِ: majrūr setelah فِي.",
+                irab: "قَرَأْتُ: فعل ماضٍ مبني على السكون لاتصاله بتاء الفاعل، والتاء ضمير في محل رفع فاعل. الْكِتَابَ: مفعول به منصوب بالفتحة. فِي: حرف جر. الْبَيْتِ: اسم مجرور بفي وعلامة جره الكسرة."
             },
             {
                 arab: "يَجْلِسُ أَحْمَدُ أَمَامَ الْبَيْتِ",
-                latin: "Yajlisu Aḥmadu amāmal-bayti",
+                latin: "Yajlisu Aḥmadu amāma al-bayti",
                 arti: "Ahmad sedang duduk di depan rumah.",
-                highlight: "يَجْلِسُ (Fi'il Mudhari') + الْبَيْتِ (Isim)"
+                highlight: "يَجْلِسُ: fi'il muḍāri' marfū'; أَحْمَدُ: fā'il marfū' dengan ḍammah; أَمَامَ: ẓarf makān manṣūb; الْبَيْتِ: muḍāf ilaih majrūr.",
+                irab: "يَجْلِسُ: فعل مضارع مرفوع بالضمة. أَحْمَدُ: فاعل مرفوع بالضمة، وهو ممنوع من الصرف. أَمَامَ: ظرف مكان منصوب بالفتحة وهو مضاف. الْبَيْتِ: مضاف إليه مجرور بالكسرة."
             }
         ];
 
@@ -640,6 +644,10 @@
                                 <i class="fa-solid fa-tag text-gold-500 mr-1.5"></i>${ex.highlight}
                             </span>
                         </div>
+                        <div class="mt-2 rounded-xl bg-white/80 border border-emerald-900/10 p-3">
+                            <p class="text-[11px] font-bold text-emerald-900 mb-1"><i class="fa-solid fa-book-open mr-1"></i> Analisis I'rab</p>
+                            <p class="arabic-text text-base leading-loose text-right text-stone-800" dir="rtl">${ex.irab || "Analisis i'rab belum tersedia untuk contoh ini."}</p>
+                        </div>
                     </div>
                 </div>
             `).join('');
@@ -679,7 +687,7 @@
                 ...currentVocab.fiil.map(f => f.arti)
             ].join(", ");
 
-            const prompt = `Buat paket mufrodat pemula bertema "${randomTheme}". Hindari arti yang sudah dipakai: ${previousWords}. Kembalikan JSON saja dengan tepat 5 isim (arab berharakat, jamak, latin, arti), 5 fi'il (madhi, mudhari, latin, arti), dan 4 contoh kalimat sederhana yang memakai kosakata tersebut (arab berharakat, latin, arti, highlight). Pilih kata umum, relevan dengan tema, jangan mengulang kata dalam paket ini. Harakat Arab harus benar dan lengkap. Format: {"isim":[{"arab":"","jamak":"","latin":"","arti":""}],"fiil":[{"madhi":"","mudhari":"","latin":"","arti":""}],"examples":[{"arab":"","latin":"","arti":"","highlight":""}]}.`
+            const prompt = `Buat paket mufrodat pemula bertema "${randomTheme}". Hindari arti yang sudah dipakai: ${previousWords}. Kembalikan JSON saja dengan tepat 5 isim (arab berharakat, jamak, latin, arti), 5 fi'il (madhi, mudhari, latin, arti), dan 4 contoh kalimat sederhana yang memakai kosakata tersebut (arab berharakat lengkap, latin, arti, highlight, dan irab). WAJIB mengubah akhir isim sesuai fungsi nahwunya di dalam kalimat: فاعل/مبتدأ/خبر مرفوع, مفعول به/ظرف منصوب, dan اسم مجرور setelah huruf jar atau sebagai مضاف إليه. Jangan menyalin bentuk kamus secara mentah bila kedudukannya menuntut harakat akhir berbeda. Pastikan harakat akhir pada teks Arab, latin, dan analisis i'rab saling cocok. Sertakan analisis i'rab kata per kata dalam bahasa Arab. Pilih kata umum, relevan dengan tema, jangan mengulang kata dalam paket ini. Harakat Arab harus benar dan lengkap. Format: {"isim":[{"arab":"","jamak":"","latin":"","arti":""}],"fiil":[{"madhi":"","mudhari":"","latin":"","arti":""}],"examples":[{"arab":"","latin":"","arti":"","highlight":"","irab":""}]}.`
 
             const payload = {
                 contents: [{ parts: [{ text: prompt }] }],
@@ -722,9 +730,10 @@
                                         arab: { type: "STRING" },
                                         latin: { type: "STRING" },
                                         arti: { type: "STRING" },
-                                        highlight: { type: "STRING" }
+                                        highlight: { type: "STRING" },
+                                        irab: { type: "STRING" }
                                     },
-                                    required: ["arab", "latin", "arti", "highlight"]
+                                    required: ["arab", "latin", "arti", "highlight", "irab"]
                                 }
                             }
                         },
@@ -782,7 +791,7 @@
             const isimStr = currentVocab.isim.map(i => `${i.arab} (${i.arti})`).join(", ");
             const fiilStr = currentVocab.fiil.map(f => `${f.madhi}/${f.mudhari} (${f.arti})`).join(", ");
 
-            const prompt = `Buat tepat 4 kalimat Arab pemula yang bervariasi menggunakan kosakata berikut. Isim: ${isimStr}. Fi'il: ${fiilStr}. Setiap kalimat wajib berharakat lengkap dan memiliki latin, arti Indonesia, serta highlight kata yang digunakan. Jawab hanya JSON array berisi objek {"arab":"","latin":"","arti":"","highlight":""}.`;
+            const prompt = `Buat tepat 4 kalimat Arab pemula yang bervariasi menggunakan kosakata berikut. Isim: ${isimStr}. Fi'il: ${fiilStr}. Setiap kalimat wajib berharakat lengkap. Infleksikan akhir setiap isim sesuai kedudukan i'rabnya, jangan menyalin bentuk kamus secara mentah. Sertakan latin yang mencerminkan harakat akhir, arti Indonesia, highlight fungsi kata, serta analisis i'rab kata per kata dalam bahasa Arab. Periksa kecocokan harakat akhir dengan analisis. Jawab hanya JSON array berisi objek {"arab":"","latin":"","arti":"","highlight":"","irab":""}.`;
 
             const payload = {
                 contents: [{ parts: [{ text: prompt }] }],
@@ -796,9 +805,10 @@
                                 arab: { type: "STRING" },
                                 latin: { type: "STRING" },
                                 arti: { type: "STRING" },
-                                highlight: { type: "STRING" }
+                                highlight: { type: "STRING" },
+                                irab: { type: "STRING" }
                             },
-                            required: ["arab", "latin", "arti", "highlight"]
+                            required: ["arab", "latin", "arti", "highlight", "irab"]
                         }
                     }
                 }
